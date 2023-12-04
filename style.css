@@ -104,37 +104,45 @@ body > header {
 }
 
 body > nav {
-    background-color:lightgrey;
+    background-color:#d1d7e9;
     border-radius: 0 0 25px 25px;
-    box-shadow: 1px 1px 5px;
+    box-shadow: 1px 1px 5px #000000;
     position: sticky;
     top: 0;
 }
 
+@media screen and (prefers-color-scheme: dark) {
+    body > nav {
+        background-color: #414756;
+    }
+}
+
 body > nav > ul {
-    margin: 0 25px;
-    padding: 0 calc(5% - 60px);
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 95%;
+    padding: 0 35px;
     list-style-type: none;
     display: flex;
+    justify-content: center;
 }
 
 body > nav > ul > li {
-    border-right: 1px solid darkgray;
-    min-width: 10em;
+    border-right: 1px solid #a5abbd;
     text-align: center;
     position: relative;
 }
 
 body > nav > ul > li:first-child {
-    border-left: 1px solid darkgray;
+    border-left: 1px solid #a5abbd;
 }
 
 body > nav > ul > li:hover {
-    box-shadow: 0 0 5px;
+    box-shadow: 0 0 5px #000000;
 }
 
 body > nav > ul > li:active {
-    box-shadow: inset 0 0 5px;
+    box-shadow: 0 0 5px #000000, inset 0 0 5px #000000;
 }
 
 body > nav > ul > li a {
@@ -147,35 +155,39 @@ body > nav > ul > li > ul {
     margin: 0;
     padding: 0;
     text-align: center;
-	visibility: hidden;
     position: absolute;
-    background-color: lightgray;
+    background-color: #d1d7e9;
     min-width: inherit;
     width: inherit;
-    left: -1px;
-    box-shadow: 1px 1px 5px;
+    box-shadow: 1px 1px 5px #000000;
     border-radius: 0 0 25px 25px;
-    max-height: 0;
+    transform-origin: top;
+    scale: 1 0;
     opacity: 0;
-    transition: max-height 0.5s, opacity 0.5s;
+    transition: scale 0.5s, opacity 0.5s;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    body > nav > ul > li > ul {
+        background-color: #414756;
+    }
 }
 
 body > nav > ul > li:hover > ul {
-    visibility: visible;
     opacity: 1;
-    max-height: 200px;
+    scale: 1 1;
 }
 
 body > nav > ul > li:hover > ul > li {
-    border-top: 1px solid darkgray;
+    border-top: 1px solid #a5abbd;
 }
 
 body > nav > ul > li:hover > ul > li:hover {
-    box-shadow: 0 0 5px;
+    box-shadow: 0 0 5px #000000;
 }
 
 body > nav > ul > li:hover > ul > li:active {
-    box-shadow: inset 0 0 5px;
+    box-shadow: 0 0 5px #000000, inset 0 0 5px #000000;
 }
 
 body > nav > ul > li:hover > ul > li:hover:last-child {
@@ -247,7 +259,7 @@ footer {
 }
 
 #scrollup:active {
-    box-shadow: inset 1px 1px 5px #000000;
+    box-shadow: 1px 1px 5px #000000, inset 1px 1px 5px #000000;
 }
 
 .gallery {

@@ -14,9 +14,17 @@ function onScroll() {
 function scrollToTop() {
     window.scrollTo(0,0);
 }
+function setSublistWidth() {
+    let menus = document.querySelector("nav").querySelector("ul").querySelectorAll("ul");
+    for (let menu of menus) {
+        menu.style.width = window.getComputedStyle(menu.parentElement).width;
+    }
+}
 
 footerMargin();
+setSublistWidth();
 
 window.addEventListener("resize",footerMargin);
+window.addEventListener("resize",setSublistWidth);
 window.addEventListener("scroll",onScroll);
 document.getElementById("scrollup").addEventListener("click",scrollToTop)
