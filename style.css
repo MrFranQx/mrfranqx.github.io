@@ -11,60 +11,9 @@
     color: #1e2431;
 }
 
-@media screen and (prefers-color-scheme: dark) {
-    :root {
-        background-color: #3c4251;
-        color: #f4f9ff;
-    }
-}
-
-h1 {
-    font-family: var(--h1-font);
-    color: var(--accent-text-color);
-    transition: font-size 0.2s;
-}
-
-@media screen and (width >= 768px) {
-    h1 {
-        font-size: 3em;
-    }
-}
-
-@media screen and (prefers-color-scheme: dark) {
-    h1 {
-        color: var(--accent-dark-text-color);
-    }
-}
-
+/* TODO: More precise scroll margins*/
 h2, h3 {
     scroll-margin-top: calc(41px + 0.5em);
-}
-
-body {
-    width: 100%;
-    margin: 0;
-    font-family: var(--font);
-    background-color: #f4f9ff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    transition: width 0.2s;
-}
-
-@media screen and (width >= 768px) {
-    body {
-        width: 90%;
-        margin: 8px auto;
-        border-radius: 25px;
-        box-shadow: 1px 1px 5px #000000;
-        min-height: calc(100vh - 16px);
-    }
-}
-
-@media screen and (prefers-color-scheme: dark) {
-    body {
-        background-color: #1e2431;
-    }
 }
 
 a:link, a:visited {
@@ -72,31 +21,29 @@ a:link, a:visited {
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
+body {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font);
+    background-color: #f4f9ff;
+    transition: width 0.2s;
 }
 
 body > header {
+    position: relative;
+    padding: 5px;
     text-align: center;
     background-color: var(--accent-color);
-    
     border-bottom: 1px solid #a5abbd;
-    padding: 5px;
-    position: relative;
 }
 
-@media screen and (width >= 768px) {
-    body > header {
-        border-radius: 25px 25px 0 0;
-        z-index: 1;
-    }
-}
-
-@media screen and (prefers-color-scheme: dark) {
-    body > header {
-        background-color: var(--accent-dark-color);
-        border-bottom: 1px solid #3c4251;
-    }
+h1 {
+    font-family: var(--h1-font);
+    color: var(--accent-text-color);
+    transition: font-size 0.2s;
 }
 
 #navi {
@@ -107,33 +54,29 @@ body > header {
     width: 50px;
     height: 50px;
     background-color: #d1d7e9;
-    
+    color: #1e2431;
     border-radius: 5px;
     border: none;
     transition: opacity 0.2s;
-    color: #1e2431;
-}
-
-@media screen and (prefers-color-scheme: dark) {
-    #navi {
-        background-color: #414756;
-        color: #f4f9ff;
-    }
-}
-
-@media screen and (width >= 768px) {
-    #navi {
-        display: none;
-    }
-}
-
-#navi:hover {
-    cursor: pointer;
-    box-shadow: 1px 1px 5px #000000;
 }
 
 #navi:active {
     box-shadow: 1px 1px 5px #000000, inset 1px 1px 5px #000000;
+}
+
+div.hide {
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s;
+}
+
+div.hide.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 body > nav {
@@ -143,51 +86,29 @@ body > nav {
     background-color:#d1d7e9;
     border-radius: 25px 0 0 25px;
     box-shadow: 1px 1px 5px #000000;
+    transform-origin: right;
+    opacity: 0;
+    scale: 0 1;
+    transition: scale 0.5s, opacity 0.5s;
 }
 
-@media screen and (width >= 768px) {
-    body > nav {
-        border-radius: 0 0 25px 25px;
-        position: sticky;
-        top: 0;
-        height: auto;
-    }
-}
-
-@media screen and (prefers-color-scheme: dark) {
-    body > nav {
-        background-color: #414756;
-    }
+body > nav.active {
+    opacity: 1;
+    scale: 1 1;
 }
 
 body > nav > ul {
-    display: block;
-    padding: 0 35px;
+    padding: 0 5px;
     list-style-type: none;
 }
 
-@media screen and (width >= 768px) {
-    body > nav > ul {
-        box-sizing: border-box;
-        margin: 0 auto;
-        width: 95%;
-        display: flex;
-        justify-content: center;
-    }
-}
-
 body > nav > ul > li {
-    border-right: 1px solid #a5abbd;
-    text-align: center;
+    border-bottom: 1px solid #a5abbd;
     position: relative;
 }
 
 body > nav > ul > li:first-child {
-    border-left: 1px solid #a5abbd;
-}
-
-body > nav > ul > li:hover {
-    box-shadow: 0 0 5px #000000;
+    border-top: 1px solid #a5abbd;
 }
 
 body > nav > ul > li:active {
@@ -195,52 +116,44 @@ body > nav > ul > li:active {
 }
 
 body > nav > ul > li a {
-    display: block;
+    display: inline-block;
     padding: 10px 25px;
+}
+
+body > nav > ul > li > button {
+    border: none;
+    background: none;
+    padding: 10px;
 }
 
 body > nav > ul > li > ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    text-align: center;
-    position: absolute;
+    position: relative;
     background-color: #d1d7e9;
     min-width: inherit;
     width: inherit;
-    box-shadow: 1px 1px 5px #000000;
-    border-radius: 0 0 25px 25px;
+    text-align: left;
     transform-origin: top;
     scale: 1 0;
     opacity: 0;
-    transition: scale 0.5s, opacity 0.5s;
+    max-height: 0;
+    transition: scale 0.5s, opacity 0.5s, max-height 0.5s;
 }
 
-@media screen and (prefers-color-scheme: dark) {
-    body > nav > ul > li > ul {
-        background-color: #414756;
-    }
-}
-
-body > nav > ul > li:hover > ul {
+body > nav > ul > li.active > ul {
     opacity: 1;
     scale: 1 1;
+    max-height: 100%;
 }
 
-body > nav > ul > li:hover > ul > li {
+body > nav > ul > li > ul > li {
     border-top: 1px solid #a5abbd;
 }
 
-body > nav > ul > li:hover > ul > li:hover {
-    box-shadow: 0 0 5px #000000;
-}
-
-body > nav > ul > li:hover > ul > li:active {
+body > nav > ul > li > ul > li:active {
     box-shadow: 0 0 5px #000000, inset 0 0 5px #000000;
-}
-
-body > nav > ul > li:hover > ul > li:hover:last-child {
-    border-radius: 0 0 25px 25px;
 }
 
 main {
@@ -249,35 +162,10 @@ main {
     padding: 20px 35px;
 }
 
-@media screen and (width >= 768px) {
-    main {
-        box-sizing: border-box;
-        width: 95%;
-        border-bottom: 0;
-        margin: 25px auto 0;
-    }
-}
-
 footer {
     background-color:#d1d7e9;    
     padding: 10px 35px;
     transition: width 0.2s, margin-block 0.2s;
-}
-
-@media screen and (width >= 768px) {
-    footer {
-        box-sizing: border-box;
-        border-radius: 25px;
-        box-shadow: 1px 1px 5px #000000;
-        margin: 25px auto;
-        width: 95%;
-    }
-}
-
-@media screen and (prefers-color-scheme: dark) {
-    footer {
-        background-color: #414756;
-    }
 }
 
 #scrollup {
@@ -294,18 +182,6 @@ footer {
     opacity: 0;
     transition: opacity 0.2s;
     color: var(--accent-text-color);
-}
-
-@media screen and (prefers-color-scheme: dark) {
-    #scrollup {
-        background-color: var(--accent-dark-color);
-        color: var(--accent-dark-text-color);
-    }
-}
-
-#scrollup:hover {
-    cursor: pointer;
-    box-shadow: 1px 1px 5px #000000;
 }
 
 #scrollup:active {
@@ -329,4 +205,170 @@ figure > img {
 
 figcaption {
     text-align: center;
+}
+
+/* hoverable */
+
+@media (hover: hover) {
+    a:hover {
+        text-decoration: underline;
+    }
+
+    #navi:hover {
+        cursor: pointer;
+        box-shadow: 1px 1px 5px #000000;
+    }
+
+    body > nav > ul > li > button {
+        display: none;
+    }
+
+    body > nav > ul > li:hover {
+        box-shadow: 0 0 5px #000000;
+    }
+
+    body > nav > ul > li:hover > ul {
+        opacity: 1;
+        scale: 1 1;
+        max-height: 100%;
+    }
+    
+    body > nav > ul > li > ul > li:hover {
+        box-shadow: 0 0 5px #000000;
+    }
+
+    #scrollup:hover {
+        cursor: pointer;
+        box-shadow: 1px 1px 5px #000000;
+    }
+}
+
+/* Large screens */
+
+@media screen and (width >= 768px) {
+    body {
+        width: 90%;
+        margin: 8px auto;
+        border-radius: 25px;
+        box-shadow: 1px 1px 5px #000000;
+        min-height: calc(100vh - 16px);
+    }
+
+    body > header {
+        z-index: 1;
+        border-radius: 25px 25px 0 0;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+
+    #navi {
+        display: none;
+    }
+
+    body > nav {
+        position: sticky;
+        top: 0;
+        height: auto;
+        border-radius: 0 0 25px 25px;
+        opacity: 1;
+        scale: 1 1;
+    }
+
+    body > nav > ul {
+        box-sizing: border-box;
+        margin: 0 auto;
+        width: 95%;
+        display: flex;
+        justify-content: center;
+    }
+
+    body > nav > ul > li {
+        border-bottom: none;
+        border-right: 1px solid #a5abbd;
+        text-align: center;
+        position: relative;
+    }
+    
+    body > nav > ul > li:first-child {
+        border-top: none;
+        border-left: 1px solid #a5abbd;
+    }
+
+    body > nav > ul > li > ul {
+        position: absolute;
+        transition: scale 0.5s, opacity 0.5s;
+        max-height: revert;
+        box-shadow: 1px 1px 5px #000000;
+        border-radius: 0 0 25px 25px;
+        text-align: center;
+    }
+
+    body > nav > ul > li:hover > ul {
+        max-height: revert;
+    }
+
+    body > nav > ul > li > ul > li:last-child {
+        border-radius: 0 0 25px 25px;
+    }
+
+    main {
+        box-sizing: border-box;
+        width: 95%;
+        border-bottom: 0;
+        margin: 25px auto 0;
+    }
+
+    footer {
+        box-sizing: border-box;
+        border-radius: 25px;
+        box-shadow: 1px 1px 5px #000000;
+        margin: 25px auto;
+        width: 95%;
+    }
+}
+
+/* Dark mode */
+
+@media screen and (prefers-color-scheme: dark) {
+    :root {
+        background-color: #3c4251;
+        color: #f4f9ff;
+    }
+
+    body {
+        background-color: #1e2431;
+    }
+
+    body > header {
+        background-color: var(--accent-dark-color);
+        border-bottom: 1px solid #3c4251;
+    }
+
+    h1 {
+        color: var(--accent-dark-text-color);
+    }
+
+    #navi {
+        background-color: #414756;
+        color: #f4f9ff;
+    }
+
+    body > nav {
+        background-color: #414756;
+    }
+
+    body > nav > ul > li > ul {
+        background-color: #414756;
+    }
+
+    #scrollup {
+        background-color: var(--accent-dark-color);
+        color: var(--accent-dark-text-color);
+    }
+
+    footer {
+        background-color: #414756;
+    }
 }
